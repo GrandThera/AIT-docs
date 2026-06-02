@@ -866,4 +866,43 @@
     .resource {
       grid-template-columns: 1fr;
     }
+    
+    @media (max-width: 860px) {
+      .demo-head {
+        grid-template-columns: 1fr;
+      }
+    
+      .demo-actions {
+        justify-content: flex-start;
+      }
+    }
+    
+    @media (max-width: 620px) {
+      .demo-showcase {
+        margin: 20px 0;
+      }
+    
+      .demo-head,
+      .demo-snippets {
+        padding: 14px;
+      }
+    
+      .demo-head h3 {
+        font-size: 24px;
+      }
+    
+      .demo-head p {
+        max-width: 100%;
+      }
+    
+      .demo-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+      }
+    
+      .demo-actions .button {
+        width: 100%;
+      }
+    }
   }
