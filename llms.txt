@@ -1,0 +1,29 @@
+# Grand Thera Docs
+
+Public documentation index for Grand Thera open engineering material.
+
+## Pages
+
+- Overview: docs/index.html
+- Algorithm notes: docs/ALGORITHM.md
+- Frontend context: docs/FRONTEND_CONTEXT.md
+- Symbolic regression frontend context: docs/SYMBOLIC_REGRESSION_FRONTEND_CONTEXT.md
+
+## Public Links
+
+- Website: https://www.grandthera.com/
+- Open Engineering API docs: https://api.thera-os.com/docs
+- GitHub: https://github.com/grandthera
+- Medium: https://medium.com/grand-thera/about
+- AIT Regimes Detection demo: https://grandthera.github.io/AIT-regime/
+- AIT Regimes Detection: public Open Engineering 
+- AIT Neural SDE demo: https://grandthera.github.io/AIT-neural-sde/
+- AIT Neural SDE : public Open Engineering 
+- Symbolic Regression demo: https://grandthera.github.io/AIT-symbolic/
+
+## Scope
+
+This public documentation describes product positioning, public API entry points,
+and open engineering artifacts. It does not disclose Grand Thera production
+source code, private orchestration systems, client deployments, production
+model calibration layers, credentials, or internal architecture.

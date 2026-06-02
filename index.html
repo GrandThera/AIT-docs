@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="Grand Thera public documentation for decision-grade AI, TheraOS, AIT Agents, TroIA, and open engineering."
+  >
+  <title>Grand Thera Docs</title>
+  <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <button class="mobile-menu" type="button" aria-label="Open navigation" data-nav-toggle>Menu</button>
+        <a href="#top" aria-label="Grand Thera Docs home">
+          <img class="logo-light" src="assets/grand-thera-logo-primary.png" alt="Grand Thera">
+          <img class="logo-dark" src="assets/grand-thera-logo-white.png" alt="Grand Thera">
+        </a>
+        <span class="docs-label">Docs</span>
+      </div>
+
+      <label class="search" aria-label="Search documentation">
+        <input id="docs-search" type="search" placeholder="Search documentation">
+        <span class="search-kbd">/</span>
+      </label>
+
+      <nav class="top-links" aria-label="Primary links">
+        <a class="top-link" href="https://api.thera-os.com/docs" target="_blank" rel="noreferrer">API Docs</a>
+        <a class="top-link" href="https://github.com/grandthera" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="top-link" href="https://www.grandthera.com/" target="_blank" rel="noreferrer">Website</a>
+        <button class="icon-button" type="button" aria-label="Switch to dark mode" title="Switch to dark mode" data-theme-toggle>&#9790;</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="layout" id="top">
+    <aside class="sidebar" aria-label="Documentation navigation">
+      <section class="sidebar-section" data-search-group>
+        <p class="sidebar-title">Documentation</p>
+        <ul class="nav-list">
+          <li><a href="#what-is-grand-thera" class="active">What is Grand Thera?</a></li>
+          <li><a href="#why-grand-thera-exists">Why Grand Thera exists</a></li>
+          <li><a href="#core-products">Core products</a></li>
+          <li><a href="#open-vs-production">Open Engineering vs Closed Production</a></li>
+        </ul>
+      </section>
+
+      <section class="sidebar-section" data-search-group>
+        <p class="sidebar-title">Use Cases</p>
+        <ul class="nav-list">
+          <li><a href="#decision-critical-use-cases">Decision-critical use cases</a></li>
+          <li><a href="#architecture-pattern">Architecture pattern</a></li>
+          <li><a href="#deployment-posture">Deployment posture</a></li>
+        </ul>
+      </section>
+
+      <section class="sidebar-section" data-search-group>
+        <p class="sidebar-title">Get Started</p>
+        <ul class="nav-list">
+          <li data-search-text="getting started api docs github website demo"><a href="#getting-started">Getting started</a></li>
+          <li data-search-text="open engineering github demo open source repository"><a href="#open-engineering">Open Engineering</a></li>
+          <li data-search-text="resources api docs github website nekt reference"><a href="#resources">Resources</a></li>
+        </ul>
+      </section>
+    </aside>
+
+    <main class="main">
+      <div class="breadcrumbs">
+        <a href="https://www.grandthera.com/" target="_blank" rel="noreferrer">Grand Thera</a>
+        <span>/</span>
+        <a href="#what-is-grand-thera">Documentation</a>
+        <span>/</span>
+        <strong>Overview</strong>
+      </div>
+
+      <span class="eyebrow">Public documentation</span>
+      <h1 id="what-is-grand-thera">What is Grand Thera?</h1>
+      <p class="lead">
+        Grand Thera builds decision-grade AI for environments where critical decisions cannot wait
+        for the next report. The platform connects operational data, analytical models, and
+        specialized AI agents so teams can detect shifts, understand impact, and act before exposure
+        reaches the P&amp;L.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button primary" href="https://api.thera-os.com/docs" target="_blank" rel="noreferrer">Explore Demo APIs</a>
+        <a class="button" href="https://github.com/grandthera" target="_blank" rel="noreferrer">View GitHub</a>
+        <a class="button" href="#open-engineering">Run the public demo</a>
+      </div>
+
+      <div class="callout">
+        <strong>Documentation scope</strong>
+        <p>
+          This page documents Grand Thera's public product narrative, integration surface, and
+          open engineering material. Production source code, production calibration layers, orchestration
+          systems, governance internals, and client-specific decision workflows remain closed.
+        </p>
+      </div>
+
+      <section aria-labelledby="why-grand-thera-exists">
+        <h2 id="why-grand-thera-exists">Why Grand Thera exists</h2>
+        <p>
+          Most enterprise systems can show what happened. Fewer systems can tell decision makers
+          what changed, why it matters, and what should happen next. Grand Thera is designed for
+          decision-critical environments where fragmented information, uncertain signals, and delayed
+          execution create measurable financial risk.
+        </p>
+        <p>
+          The goal is not another dashboard layer. The goal is a reliable operating layer for
+          direction: one that turns data into interpretable signals, connects those signals to agents,
+          and supports action with traceable context.
+        </p>
+
+        <div class="accent-strip" aria-label="Grand Thera operating principles">
+          <div class="strip-item">
+            <div class="strip-top"></div>
+            <b>Detect</b>
+            <span>Identify regime shifts, anomalies, and KPI movement before they become executive surprises.</span>
+          </div>
+          <div class="strip-item">
+            <div class="strip-top"></div>
+            <b>Diagnose</b>
+            <span>Connect fragmented ERP, market, operational, and model outputs into one decision context.</span>
+          </div>
+          <div class="strip-item">
+            <div class="strip-top"></div>
+            <b>Prescribe</b>
+            <span>Surface corrective paths through specialized AIT Agents aligned to business objectives.</span>
+          </div>
+          <div class="strip-item">
+            <div class="strip-top"></div>
+            <b>Execute</b>
+            <span>Move from insight to coordinated action while preserving governance and operational control.</span>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="core-products">
+        <h2 id="core-products">Core products</h2>
+        <p>
+          Grand Thera's public positioning is organized around a decision-grade ecosystem. The
+          following concepts are safe to reference publicly and provide the vocabulary for this
+          documentation.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <span class="card-label">Unified data layer</span>
+            <h3>TheraOS</h3>
+            <p>
+              The decision operating system for critical environments. It unifies ERP systems,
+              databases, models, and algorithms into a governed decision layer deployed within the
+              client's infrastructure.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-label">Agent layer</span>
+            <h3>AIT Agents</h3>
+            <p>
+              Purpose-built AI agents that predict, prescribe, and help execute next actions across
+              complex operational and financial workflows.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-label">Financial response</span>
+            <h3>TroIA</h3>
+            <p>
+              An orchestration layer for detecting regime shifts, tracing financial impact, and
+              coordinating corrective responses across decision agents.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-label">Open Engineering</span>
+            <h3>Open engineering artifacts</h3>
+            <p>
+              Small, transparent repositories that share engineering discipline without
+              exposing Grand Thera's closed production stack or client-specific intellectual property.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="open-vs-production">
+        <h2 id="open-vs-production">Open Engineering vs Closed Production</h2>
+        <p>
+          Grand Thera can publish open engineering artifacts while keeping product implementation closed.
+          This separation keeps the public surface useful for developers, investors, and partners
+          without leaking the systems that create the company's operational edge.
+        </p>
+
+        <table class="comparison">
+          <thead>
+            <tr>
+              <th>Open engineering surface</th>
+              <th>Closed production surface</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Documentation pages, API entry points, public GitHub organization, example notebooks, and auditable research demos.</td>
+              <td>Production source code, internal services, client deployments, private data contracts, and orchestration infrastructure.</td>
+            </tr>
+            <tr>
+              <td>Transparent modeling examples such as regime detection, stochastic forecasting, and standalone analytical dashboards.</td>
+              <td>Production calibration layers, model selection systems, agent policies, monitoring loops, and enterprise governance workflows.</td>
+            </tr>
+            <tr>
+              <td>Reusable vocabulary for how Grand Thera explains decision-grade AI to technical audiences.</td>
+              <td>Client-specific decision logic, integrations, deployment topology, and operational playbooks.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section aria-labelledby="decision-critical-use-cases">
+        <h2 id="decision-critical-use-cases">Decision-critical use cases</h2>
+        <p>
+          The ecosystem is built for teams that operate with fragmented data, high uncertainty, and
+          real business consequences. Public examples should describe outcomes and architecture
+          patterns, not private implementation details.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <span class="card-label">Commercial control</span>
+            <h3>ERP fragmentation to decision visibility</h3>
+            <p>
+              Consolidate commercial, operational, and portfolio indicators into a unified view for
+              faster performance diagnosis.
+            </p>
+          </article>
+          <article class="card">
+            <span class="card-label">Risk sensing</span>
+            <h3>Regime-shift monitoring</h3>
+            <p>
+              Detect market or operational state changes and estimate whether current behavior is
+              stable, deteriorating, or entering a new response pattern.
+            </p>
+          </article>
+          <article class="card">
+            <span class="card-label">Financial impact</span>
+            <h3>P&amp;L exposure prevention</h3>
+            <p>
+              Trace signals back to likely financial impact and route corrective actions before
+              indicators become lagging losses.
+            </p>
+          </article>
+          <article class="card">
+            <span class="card-label">Agentic analytics</span>
+            <h3>Decision execution support</h3>
+            <p>
+              Give specialized agents a governed context for recommending actions, validating
+              assumptions, and closing the loop after execution.
+            </p>
+          </article>
+        </div>
+
+        <div class="pill-row" aria-label="Applicable domains">
+          <span class="pill">Finance</span>
+          <span class="pill">Energy</span>
+          <span class="pill">Operations</span>
+          <span class="pill">Revenue</span>
+          <span class="pill">Executive intelligence</span>
+          <span class="pill">AI-enabled workflows</span>
+        </div>
+      </section>
+
+      <section aria-labelledby="architecture-pattern">
+        <h2 id="architecture-pattern">Architecture pattern</h2>
+        <p>
+          The public architecture can be described as a decision loop. Each layer has a clear role,
+          and production details can stay abstract while the engineering intent remains
+          understandable.
+        </p>
+
+        <div class="flow" aria-label="Grand Thera decision loop">
+          <div class="flow-step">
+            <span class="step-number">1</span>
+            <div>
+              <b>Unify the decision context</b>
+              <span>Bring fragmented operational data, financial indicators, models, and business rules into TheraOS.</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <span class="step-number">2</span>
+            <div>
+              <b>Model the current state</b>
+              <span>Detect regimes, anomalies, uncertainty, and signal movement with transparent analytical outputs.</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <span class="step-number">3</span>
+            <div>
+              <b>Route to specialized agents</b>
+              <span>Use AIT Agents to interpret the signal, evaluate options, and propose corrective actions.</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <span class="step-number">4</span>
+            <div>
+              <b>Coordinate response</b>
+              <span>Use TroIA-style orchestration to connect actions to financial impact, ownership, and follow-up.</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <span class="step-number">5</span>
+            <div>
+              <b>Learn from the outcome</b>
+              <span>Feed execution results back into the decision layer so signals and actions become more useful over time.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="deployment-posture">
+        <h2 id="deployment-posture">Deployment posture</h2>
+        <p>
+          Public material should keep deployment claims precise. Grand Thera describes TheraOS as
+          deployable within client infrastructure, with critical data and decision workflows kept
+          under client control. The docs should avoid exposing topology, credentials, data schemas,
+          private integration contracts, or production diagrams.
+        </p>
+
+        <div class="callout">
+          <strong>Security note for public docs</strong>
+          <p>
+            Write about governance, traceability, and deployment posture at the pattern level.
+            Do not include internal URLs, secrets, customer identifiers, private endpoint shapes, or
+            implementation-specific architecture diagrams.
+          </p>
+        </div>
+      </section>
+
+      <section aria-labelledby="getting-started">
+        <h2 id="getting-started">Getting started</h2>
+        <p>
+          Use the public surface to understand the ecosystem, inspect the open engineering material,
+          and explore the API documentation entry point.
+        </p>
+
+        <div class="flow">
+          <div class="flow-step">
+            <span class="step-number">1</span>
+            <div>
+              <b>Read the product overview</b>
+              <span>Start with Grand Thera's public website to understand the decision-grade AI positioning.</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <span class="step-number">2</span>
+            <div>
+              <b>Explore the Open Engineering APIs</b>
+              <span>Open the API docs to inspect the current public API surface for the Open Engineering demonstrations.</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <span class="step-number">3</span>
+            <div>
+              <b>Review the GitHub organization</b>
+              <span>Use the public repositories as open engineering references, not as a disclosure of production systems.</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <span class="step-number">4</span>
+            <div>
+              <b>Run a local demo</b>
+              <span>Generate the standalone dashboard from the public Python package and inspect the analytical workflow.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="open-engineering">
+        <h2 id="open-engineering">Open Engineering</h2>
+        <p>
+          Open Engineering is the public surface for Grand Thera's demonstration APIs, dashboards,
+          and inspectable engineering artifacts. These examples are intentionally
+          transparent: they show how the analytical layer behaves without releasing closed
+          production systems.
+        </p>
+
+        <div class="callout">
+          <strong>APIs in this documentation</strong>
+          <p>
+            The public API documentation is tied to Open Engineering demonstrations. It is the right
+            place to inspect demo endpoints, request shapes, and integration examples,
+            not a disclosure of closed production services.
+          </p>
+        </div>
+
+        <div class="demo-showcase">
+          <article class="demo-card">
+            <div class="demo-head">
+              <div>
+                <span class="card-label">Dashboard</span>
+                <h3>AIT Regimes Detection</h3>
+                <p>
+                  K-Means initialization, Gaussian Markov Switching, regime probability heatmaps,
+                  transition diagnostics, and interactive inspection.
+                </p>
+              </div>
+              <div class="demo-actions">
+                <a class="button primary" href="https://grandthera.github.io/AIT-regime/" target="_blank" rel="noreferrer">Open demo</a>
+                <a class="button" href="https://api.thera-os.com/docs" target="_blank" rel="noreferrer">API Docs</a>
+                <a class="button" href="https://github.com/GrandThera/AIT-regime" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </div>
+            <div class="demo-body">
+              <div class="demo-snippets">
+                <div class="demo-snippet">
+                  <span class="snippet-title">API request</span>
+                  <div class="code-block">
+                    <button class="copy-code" type="button" data-copy="regime-api-snippet">Copy</button>
+                    <pre id="regime-api-snippet"><code>const response = await fetch(
+  "https://api.thera-os.com/open-engineering/regimes/analyze",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      prices: [100.0, 101.0, 102.2, 103.1, 104.4],
+      window: 5,
+      n_regimes: "auto",
+      auto_method: "bic"
+    })
+  }
+);
+
+const result = await response.json();
+console.log(result.latest_regime, result.transition_matrix);</code></pre>
+                  </div>
+                  <p class="demo-note">Use the API docs for the exact demo endpoint contract as the Open Engineering surface evolves.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="demo-card">
+            <div class="demo-head">
+              <div>
+                <span class="card-label">Dashboard</span>
+                <h3>AIT Neural SDE</h3>
+                <p>
+                  Missing-value reconstruction, Neural SDE-style drift and diffusion, Monte Carlo
+                  paths, target probabilities, and 2D/3D density views.
+                </p>
+              </div>
+              <div class="demo-actions">
+                <a class="button primary" href="https://grandthera.github.io/AIT-neural-sde/" target="_blank" rel="noreferrer">Open demo</a>
+                <a class="button" href="https://api.thera-os.com/docs" target="_blank" rel="noreferrer">API Docs</a>
+                <a class="button" href="https://github.com/GrandThera/AIT-neural-sde" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </div>
+            <div class="demo-body">
+              <div class="demo-snippets">
+                <div class="demo-snippet">
+                  <span class="snippet-title">API request</span>
+                  <div class="code-block">
+                    <button class="copy-code" type="button" data-copy="sde-api-snippet">Copy</button>
+                    <pre id="sde-api-snippet"><code>const response = await fetch(
+  "https://api.thera-os.com/open-engineering/neural-sde/forecast",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      series: [100.0, 101.0, null, 102.5, 103.2],
+      steps: 100,
+      simulations: 1000,
+      targets: [112.0, 116.0, 120.0]
+    })
+  }
+);
+
+const result = await response.json();
+console.log(result.forecast_mean, result.target_probabilities);</code></pre>
+                  </div>
+                  <p class="demo-note">Use the API docs for the exact demo endpoint contract as the Open Engineering surface evolves.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="demo-card">
+            <div class="demo-head">
+              <div>
+                <span class="card-label">Symbolic regression</span>
+                <h3>Symbolic Regression Workbench</h3>
+                <p>
+                  Interactive variable selection, symbolic model fitting, scenario controls, formula
+                  rendering, residual diagnostics, and dependence analysis.
+                </p>
+              </div>
+              <div class="demo-actions">
+                <a class="button primary" href="https://grandthera.github.io/AIT-symbolic/" target="_blank" rel="noreferrer">Open demo</a>
+                <a class="button" href="https://api.thera-os.com/docs" target="_blank" rel="noreferrer">API Docs</a>
+                <a class="button" href="https://github.com/GrandThera/AIT-symbolic" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </div>
+            <div class="demo-body">
+              <div class="demo-snippets">
+                <div class="demo-snippet">
+                  <span class="snippet-title">API request</span>
+                  <div class="code-block">
+                    <button class="copy-code" type="button" data-copy="symbolic-api-snippet">Copy</button>
+                    <pre id="symbolic-api-snippet"><code>const response = await fetch(
+  "https://api.thera-os.com/open-engineering/symbolic/fit",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      target: "margin",
+      features: ["price", "volume", "volatility"],
+      maxTerms: 6,
+      selectionCriterion: "bic"
+    })
+  }
+);
+
+const model = await response.json();
+console.log(model.formula, model.metrics);</code></pre>
+                  </div>
+                  <p class="demo-note">Use the API docs for the exact demo endpoint contract as the Open Engineering surface evolves.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="code-block">
+          <button class="copy-code" type="button" data-copy="demo-commands">Copy</button>
+          <pre id="demo-commands"><code>git clone https://github.com/grandthera/AIT-Simple_RegimeDetection.git
+cd AIT-Simple_RegimeDetection
+python -m venv .venv
+pip install -e .
+python examples/neural_sde_forecast_demo.py</code></pre>
+        </div>
+
+        <div class="section-actions">
+          <a class="button primary" href="https://api.thera-os.com/docs" target="_blank" rel="noreferrer">Open API Docs</a>
+          <a class="button" href="https://grandthera.github.io/AIT-regime/" target="_blank" rel="noreferrer">Regime demo</a>
+          <a class="button" href="https://grandthera.github.io/AIT-neural-sde/" target="_blank" rel="noreferrer">Neural SDE demo</a>
+          <a class="button" href="https://grandthera.github.io/AIT-symbolic/" target="_blank" rel="noreferrer">Symbolic demo</a>
+        </div>
+
+        <p>
+          The generated HTML dashboards can be opened locally or through the public demo links above
+          and used as inspectable examples of modeling assumptions, uncertainty visualization, and
+          engineering care.
+        </p>
+      </section>
+
+      <section aria-labelledby="resources">
+        <h2 id="resources">Resources</h2>
+        <div class="resource-list">
+          <a class="resource" href="https://www.grandthera.com/" target="_blank" rel="noreferrer">
+            <span>
+              <b>Grand Thera website</b>
+              <span>Public product positioning, company context, and decision-grade AI narrative.</span>
+            </span>
+            <em>Open</em>
+          </a>
+          <a class="resource" href="https://api.thera-os.com/docs" target="_blank" rel="noreferrer">
+            <span>
+              <b>Open Engineering API docs</b>
+              <span>Public API documentation entry point for the demonstration APIs.</span>
+            </span>
+            <em>Open</em>
+          </a>
+          <a class="resource" href="https://github.com/grandthera" target="_blank" rel="noreferrer">
+            <span>
+              <b>Grand Thera GitHub</b>
+              <span>Public repositories and open engineering artifacts.</span>
+            </span>
+            <em>Open</em>
+          </a>
+          <a class="resource" href="https://grandthera.github.io/AIT-regime/" target="_blank" rel="noreferrer">
+            <span>
+              <b>AIT Regimes Detection</b>
+              <span>Open Engineering demo for regime analysis and transition diagnostics.</span>
+            </span>
+            <em>Open</em>
+          </a>
+          <a class="resource" href="https://grandthera.github.io/AIT-neural-sde/" target="_blank" rel="noreferrer">
+            <span>
+              <b>AIT Neural SDE</b>
+              <span>Open Engineering demo for stochastic forecasting and Monte Carlo inspection.</span>
+            </span>
+            <em>Open</em>
+          </a>
+          <a class="resource" href="https://grandthera.github.io/AIT-symbolic/" target="_blank" rel="noreferrer">
+            <span>
+              <b>Symbolic Regression Workbench</b>
+              <span>Open Engineering demo for symbolic modeling, formula rendering, and diagnostics.</span>
+            </span>
+            <em>Open</em>
+          </a>
+          <a class="resource" href="https://medium.com/grand-thera/about" target="_blank" rel="noreferrer">
+            <span>
+              <b>Grand Thera Medium</b>
+              <span>Articles and long-form notes on decision-grade AI, engineering, and critical decision systems.</span>
+            </span>
+            <em>Open</em>
+          </a>
+        </div>
+      </section>
+
+      <nav class="footer-nav" aria-label="Adjacent pages">
+        <a href="#core-products">
+          <span>Previous</span>
+          <b>Core products</b>
+        </a>
+        <a href="#open-engineering">
+          <span>Next</span>
+          <b>Open Engineering</b>
+        </a>
+      </nav>
+    </main>
+
+    <aside class="toc" aria-label="On this page">
+      <p class="toc-title">On this page</p>
+      <ul class="toc-list">
+        <li><a href="#why-grand-thera-exists">Why Grand Thera exists</a></li>
+        <li><a href="#core-products">Core products</a></li>
+        <li><a href="#open-vs-production">Open Engineering vs Closed Production</a></li>
+        <li><a href="#decision-critical-use-cases">Use cases</a></li>
+        <li><a href="#architecture-pattern">Architecture pattern</a></li>
+        <li><a href="#deployment-posture">Deployment posture</a></li>
+        <li><a href="#getting-started">Getting started</a></li>
+        <li><a href="#open-engineering">Open Engineering</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const themeToggle = document.querySelector("[data-theme-toggle]");
+    const navToggle = document.querySelector("[data-nav-toggle]");
+    const searchInput = document.querySelector("#docs-search");
+    const navLinks = Array.from(document.querySelectorAll(".nav-list a, .toc-list a"));
+    const sections = navLinks
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
+
+    function setTheme(theme) {
+      root.dataset.theme = theme;
+      localStorage.setItem("grand-thera-docs-theme", theme);
+      const nextMode = theme === "dark" ? "light" : "dark";
+      themeToggle.innerHTML = theme === "dark" ? "&#9728;" : "&#9790;";
+      themeToggle.setAttribute("aria-label", `Switch to ${nextMode} mode`);
+      themeToggle.setAttribute("title", `Switch to ${nextMode} mode`);
+    }
+
+    setTheme(localStorage.getItem("grand-thera-docs-theme") || "light");
+
+    themeToggle.addEventListener("click", () => {
+      setTheme(root.dataset.theme === "dark" ? "light" : "dark");
+    });
+
+    navToggle.addEventListener("click", () => {
+      document.body.classList.toggle("nav-open");
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        document.body.classList.remove("nav-open");
+      });
+    });
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
+      document.querySelectorAll("[data-search-group]").forEach((group) => {
+        let visible = false;
+        group.querySelectorAll("li").forEach((item) => {
+          const haystack = (item.dataset.searchText || item.textContent).toLowerCase();
+          const match = haystack.includes(query);
+          item.classList.toggle("hidden", query && !match);
+          visible = visible || !query || match;
+        });
+        group.classList.toggle("hidden", !visible);
+      });
+    });
+
+    searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        const firstVisible = document.querySelector(".nav-list li:not(.hidden) a");
+        if (firstVisible) firstVisible.click();
+      }
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "/" && document.activeElement !== searchInput) {
+        event.preventDefault();
+        searchInput.focus();
+      }
+      if (event.key === "Escape") {
+        document.body.classList.remove("nav-open");
+      }
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === "#" + visible.target.id);
+        });
+      },
+      { rootMargin: "-18% 0px -68% 0px", threshold: [0.1, 0.4, 0.8] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    document.querySelectorAll("[data-copy]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const target = document.getElementById(button.dataset.copy);
+        if (!target) return;
+        await navigator.clipboard.writeText(target.innerText.trim());
+        button.textContent = "Copied";
+        setTimeout(() => {
+          button.textContent = "Copy";
+        }, 1400);
+      });
+    });
+  </script>
+</body>
+</html>
