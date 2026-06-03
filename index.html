@@ -53,6 +53,7 @@
         <p class="sidebar-title">Use Cases</p>
         <ul class="nav-list">
           <li><a href="#decision-critical-use-cases">Decision-critical use cases</a></li>
+          <li data-search-text="applied case usd brl fx forecast fpa treasury risk notebook"><a href="#applied-case">Applied Case</a></li>
           <li><a href="#architecture-pattern">Architecture pattern</a></li>
           <li><a href="#deployment-posture">Deployment posture</a></li>
         </ul>
@@ -269,6 +270,206 @@
           <span class="pill">Revenue</span>
           <span class="pill">Executive intelligence</span>
           <span class="pill">AI-enabled workflows</span>
+        </div>
+      </section>
+
+      <section aria-labelledby="applied-case">
+        <h2 id="applied-case">Applied Case</h2>
+
+        <div class="applied-case">
+          <div class="applied-case-head">
+            <span class="case-kicker">FX Risk &middot; FP&amp;A &middot; Treasury</span>
+            <h3>USD/BRL Forecast and Regime Risk</h3>
+            <p>
+              Within the Grand Thera architecture, TheraOS consolidates governed data and AITs
+              perform the analytical applications. This public case focuses on the application
+              layer: an already prepared daily USD/BRL series is sent directly to AIT Neural SDE
+              and AIT Regimes Detection to produce a 30-day distributional forecast, tail-risk
+              probabilities, current market regime, and regime-transition risk.
+            </p>
+            <p>
+              For FP&amp;A and treasury teams, the case supports budget-rate assumptions, hedge sizing,
+              covenant headroom, and the probability that unhedged dollar costs exceed plan.
+            </p>
+            <div class="case-actions">
+              <a class="button primary" href="https://github.com/GrandThera/AIT-docs" target="_blank" rel="noreferrer">Repository</a>
+              <a class="button" href="https://colab.research.google.com/github/GrandThera/AIT-demo-api/blob/main/api_grandthera_usdbrl_neuralsde_regime.ipynb" target="_blank" rel="noreferrer">Full Notebook</a>
+              <a class="button" href="https://api.thera-os.com/docs" target="_blank" rel="noreferrer">API Docs</a>
+            </div>
+          </div>
+
+          <div class="case-snapshot" aria-label="Saved notebook output snapshot">
+            <div class="case-metric">
+              <span>Market input</span>
+              <b>252 trading days</b>
+              <small>USD/BRL daily close</small>
+            </div>
+            <div class="case-metric">
+              <span>Forecast horizon</span>
+              <b>30 calendar days</b>
+              <small>Approximately 21 trading steps</small>
+            </div>
+            <div class="case-metric">
+              <span>Decision threshold</span>
+              <b>USD +5%</b>
+              <small>BRL depreciation risk</small>
+            </div>
+            <div class="case-metric">
+              <span>Saved run &middot; 2026-06-03</span>
+              <b>1.8%</b>
+              <small>P(USD appreciates &gt;5%, final)</small>
+            </div>
+            <div class="case-metric">
+              <span>90% forecast band</span>
+              <b>-4.58% to +3.84%</b>
+              <small>Terminal return range</small>
+            </div>
+            <div class="case-metric">
+              <span>Regime-change risk</span>
+              <b>77.4%</b>
+              <small>Probability within 21 steps</small>
+            </div>
+          </div>
+
+          <div class="case-chapters">
+            <article class="case-chapter">
+              <div class="case-chapter-head">
+                <span class="case-number">01</span>
+                <div>
+                  <h4>Frame the financial decision</h4>
+                  <p>Define the planning horizon, tail threshold, and model controls.</p>
+                </div>
+              </div>
+              <div class="code-block">
+                <button class="copy-code" type="button" data-copy="case-config-snippet">Copy</button>
+                <pre id="case-config-snippet"><code>THERA_BASE_URL = "https://api.thera-os.com"
+
+LOOKBACK_TRADING = 252
+HORIZON_CALENDAR = 30
+HORIZON_TRADING = round(HORIZON_CALENDAR * 21 / 30)
+THRESHOLD = 0.05
+
+FC_SIMULATIONS = 4000
+RG_N_REGIMES = "auto"
+RG_AUTO_METHOD = "bic"</code></pre>
+              </div>
+            </article>
+
+            <article class="case-chapter">
+              <div class="case-chapter-head">
+                <span class="case-number">02</span>
+                <div>
+                  <h4>Prepare the USD/BRL input series</h4>
+                  <p>Load public market data and convert it into the price and date arrays sent directly to the AIT applications.</p>
+                </div>
+              </div>
+              <div class="code-block">
+                <button class="copy-code" type="button" data-copy="case-data-snippet">Copy</button>
+                <pre id="case-data-snippet"><code>CLOSE, LOGRET, DATA_SOURCE = load_usdbrl()
+
+S0 = float(CLOSE.iloc[-1])
+PRICES = [float(x) for x in CLOSE.values]
+DATES = [d.strftime("%Y-%m-%d") for d in CLOSE.index]
+
+vol_annual = float(LOGRET.std()) * math.sqrt(252) * 100</code></pre>
+              </div>
+            </article>
+
+            <article class="case-chapter">
+              <div class="case-chapter-head">
+                <span class="case-number">03</span>
+                <div>
+                  <h4>Call the AIT applications</h4>
+                  <p>Use the public API to call AIT Regimes Detection and AIT Neural SDE directly.</p>
+                </div>
+              </div>
+              <div class="code-block">
+                <button class="copy-code" type="button" data-copy="case-api-snippet">Copy</button>
+                <pre id="case-api-snippet"><code>THERA = TheraOSClient(THERA_BASE_URL)
+
+raw_regime = THERA.regime_analyze(
+    PRICES, DATES, RG_N_REGIMES, RG_WINDOW, RG_AUTO_METHOD
+)
+
+targets = [
+    round(S0 * (1 + THRESHOLD), 6),
+    round(S0 * (1 - THRESHOLD), 6),
+]
+
+raw_fc = THERA.forecast_run(
+    PRICES, HORIZON_TRADING, FC_SIMULATIONS, targets,
+    FC_DRIFT_SCALE, FC_DIFFUSION_SCALE,
+    FC_MEAN_REVERSION, FC_ROLLING_WINDOW,
+)</code></pre>
+              </div>
+            </article>
+
+            <article class="case-chapter">
+              <div class="case-chapter-head">
+                <span class="case-number">04</span>
+                <div>
+                  <h4>Translate forecast output into exposure risk</h4>
+                  <p>Normalize the terminal distribution and separate final probability from barrier-touch probability.</p>
+                </div>
+              </div>
+              <div class="code-block">
+                <button class="copy-code" type="button" data-copy="case-forecast-snippet">Copy</button>
+                <pre id="case-forecast-snippet"><code>FORECAST = parse_forecast_response(raw_fc, S0, THRESHOLD)
+
+print("P(USD appreciates &gt;5%, final):",
+      FORECAST["p_above_threshold"])
+print("P(touches +5% during horizon):",
+      FORECAST["p_above_reached"])
+print("90% terminal band:",
+      FORECAST["q05"], FORECAST["q95"])</code></pre>
+              </div>
+            </article>
+
+            <article class="case-chapter">
+              <div class="case-chapter-head">
+                <span class="case-number">05</span>
+                <div>
+                  <h4>Measure regime-transition risk</h4>
+                  <p>Read the current state, horizon transition probabilities, and expected dwell time.</p>
+                </div>
+              </div>
+              <div class="code-block">
+                <button class="copy-code" type="button" data-copy="case-regime-snippet">Copy</button>
+                <pre id="case-regime-snippet"><code>REGIME = parse_regime_response(raw_regime, LOGRET.values)
+
+P_BULL_H, P_TO_BULL_NEXT, DWELL = regime_horizon_probs(
+    REGIME, HORIZON_TRADING
+)
+
+CHANGE = regime_change_probs(REGIME, HORIZON_TRADING)
+print(REGIME["current_label"], CHANGE["p_change_h"])</code></pre>
+              </div>
+            </article>
+
+            <article class="case-chapter">
+              <div class="case-chapter-head">
+                <span class="case-number">06</span>
+                <div>
+                  <h4>Produce the decision output</h4>
+                  <p>Generate the quant report and the three analytical views used in the notebook.</p>
+                </div>
+              </div>
+              <div class="code-block">
+                <button class="copy-code" type="button" data-copy="case-output-snippet">Copy</button>
+                <pre id="case-output-snippet"><code>print_report(
+    S0, HORIZON_CALENDAR, HORIZON_TRADING, THRESHOLD,
+    DATA_SOURCE, REGIME, FORECAST, CHANGE,
+    P_BULL_H, P_TO_BULL_NEXT, DWELL, LOGRET.values,
+)
+
+plot_dashboard(
+    CLOSE, LOGRET.values, S0, HORIZON_CALENDAR,
+    HORIZON_TRADING, THRESHOLD,
+    REGIME, FORECAST, CHANGE, P_BULL_H,
+)</code></pre>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -579,6 +780,13 @@ python examples/neural_sde_forecast_demo.py</code></pre>
             </span>
             <em>Open</em>
           </a>
+          <a class="resource" href="https://github.com/GrandThera/AIT-docs/blob/main/notebooks/api_grandthera_usdbrl_neuralsde_regime.ipynb" target="_blank" rel="noreferrer">
+            <span>
+              <b>USD/BRL Applied Case Full Notebook</b>
+              <span>Practical FX risk case calling AIT Neural SDE and AIT Regimes Detection through the public API.</span>
+            </span>
+            <em>Open</em>
+          </a>
           <a class="resource" href="https://grandthera.github.io/AIT-regime/" target="_blank" rel="noreferrer">
             <span>
               <b>AIT Regimes Detection</b>
@@ -629,6 +837,7 @@ python examples/neural_sde_forecast_demo.py</code></pre>
         <li><a href="#core-products">Core products</a></li>
         <li><a href="#open-vs-production">Open Engineering vs Closed Production</a></li>
         <li><a href="#decision-critical-use-cases">Use cases</a></li>
+        <li><a href="#applied-case">Applied Case</a></li>
         <li><a href="#architecture-pattern">Architecture pattern</a></li>
         <li><a href="#deployment-posture">Deployment posture</a></li>
         <li><a href="#getting-started">Getting started</a></li>
