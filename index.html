@@ -583,6 +583,49 @@ plot_dashboard(
             </div>
           </div>
         </div>
+
+        <h3>Python SDK quick start</h3>
+        <p>
+          The public Python client is available as the <code>thera-os</code> package. Install it,
+          create a client, and call the same forecast, regime, symbolic, and upload endpoints shown
+          in the API documentation.
+        </p>
+
+        <div class="code-block">
+          <button class="copy-code" type="button" data-copy="sdk-install-snippet">Copy</button>
+          <pre id="sdk-install-snippet"><code>python -m venv .venv
+        source .venv/bin/activate
+        python -m pip install thera-os</code></pre>
+        </div>
+
+        <div class="code-block">
+          <button class="copy-code" type="button" data-copy="sdk-quickstart-snippet">Copy</button>
+          <pre id="sdk-quickstart-snippet"><code>from thera_os import TheraOSClient
+
+client = TheraOSClient()
+
+forecast = client.forecast_run(
+    series=[100.0, 101.0, None, 102.5, 103.2],
+    steps=30,
+    simulations=500,
+    targets=[110.0],
+)
+
+regime = client.regime_analyze(
+    prices=[100.0, 101.0, 102.2, 103.1, 104.4],
+    window=5,
+    n_regimes="auto",
+    auto_method="bic",
+)
+
+print(forecast["terminal_summary"])
+print(regime["summary"])</code></pre>
+        </div>
+
+        <div class="section-actions">
+          <a class="button primary" href="https://pypi.org/project/thera-os/0.1.0/" target="_blank" rel="noreferrer">Open Python package</a>
+          <a class="button" href="https://github.com/GrandThera/thera-os-sdk" target="_blank" rel="noreferrer">View SDK source</a>
+        </div>
       </section>
 
       <section aria-labelledby="open-engineering">
@@ -812,15 +855,15 @@ console.log(model.formula, model.metrics);</code></pre>
         <div class="code-block">
           <button class="copy-code" type="button" data-copy="demo-commands">Copy</button>
           <pre id="demo-commands"><code>python -m venv .venv
-source .venv/bin/activate
-python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple thera-os==0.1.0
-
-python - <<'PY'
-from thera_os import TheraOSClient
-
-client = TheraOSClient()
-print(client.health())
-PY</code></pre>
+        source .venv/bin/activate
+        python -m pip install thera-os
+        
+        python - <<'PY'
+        from thera_os import TheraOSClient
+        
+        client = TheraOSClient()
+        print(client.health())
+        PY</code></pre>
         </div>
 
         <div class="section-actions">
@@ -854,7 +897,7 @@ PY</code></pre>
             </span>
             <em>Open</em>
           </a>
-          <a class="resource" href="https://test.pypi.org/project/thera-os/0.1.0/" target="_blank" rel="noreferrer">
+          <a class="resource" href="https://pypi.org/project/thera-os/0.1.0/" target="_blank" rel="noreferrer">
             <span>
               <b>thera-os Python SDK</b>
               <span>TestPyPI package for calling forecast, regime, symbolic, and upload endpoints from Python.</span>
