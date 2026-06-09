@@ -64,7 +64,7 @@
         <ul class="nav-list">
           <li data-search-text="getting started api docs github website demo"><a href="#getting-started">Getting started</a></li>
           <li data-search-text="open engineering github demo open source repository"><a href="#open-engineering">Open Engineering</a></li>
-          <li data-search-text="resources api docs github website nekt reference"><a href="#resources">Resources</a></li>
+          <li data-search-text="resources api docs github website python sdk testpypi demos articles"><a href="#resources">Resources</a></li>
         </ul>
       </section>
     </aside>
@@ -564,15 +564,22 @@ plot_dashboard(
           <div class="flow-step">
             <span class="step-number">3</span>
             <div>
-              <b>Review the GitHub organization</b>
-              <span>Use the public repositories as open engineering references, not as a disclosure of production systems.</span>
+              <b>Install the Python SDK</b>
+              <span>Use the public thera-os package to call forecast, regime, and symbolic endpoints directly from Python.</span>
             </div>
           </div>
           <div class="flow-step">
             <span class="step-number">4</span>
             <div>
+              <b>Review the GitHub organization</b>
+              <span>Use the public repositories as open engineering references, not as a disclosure of production systems.</span>
+            </div>
+          </div>
+          <div class="flow-step">
+            <span class="step-number">5</span>
+            <div>
               <b>Run a local demo</b>
-              <span>Generate the standalone dashboard from the public Python package and inspect the analytical workflow.</span>
+              <span>Generate the standalone dashboard or call the API through the SDK to inspect the analytical workflow.</span>
             </div>
           </div>
         </div>
@@ -582,7 +589,7 @@ plot_dashboard(
         <h2 id="open-engineering">Open Engineering</h2>
         <p>
           Open Engineering is the public surface for Grand Thera's demonstration APIs, dashboards,
-          and inspectable engineering artifacts. These examples are intentionally
+          Python SDK, and inspectable engineering artifacts. These examples are intentionally
           transparent: they show how the analytical layer behaves without releasing closed
           production systems.
         </p>
@@ -591,7 +598,7 @@ plot_dashboard(
           <strong>APIs in this documentation</strong>
           <p>
             The public API documentation is tied to Open Engineering demonstrations. It is the right
-            place to inspect demo endpoints, request shapes, and integration examples,
+            place to inspect demo endpoints, Python SDK usage, request shapes, and integration examples,
             not a disclosure of closed production services.
           </p>
         </div>
@@ -600,7 +607,7 @@ plot_dashboard(
           <article class="demo-card">
             <div class="demo-head">
               <div>
-                <span class="card-label">Dashboard</span>
+                <span class="card-label">Python SDK + dashboard</span>
                 <h3>AIT Regimes Detection</h3>
                 <p>
                   K-Means initialization, Gaussian Markov Switching, regime probability heatmaps,
@@ -615,6 +622,28 @@ plot_dashboard(
             </div>
             <div class="demo-body">
               <div class="demo-snippets">
+                <div class="demo-snippet">
+                  <span class="snippet-title">Python SDK</span>
+                  <div class="code-block">
+                    <button class="copy-code" type="button" data-copy="regime-sdk-snippet">Copy</button>
+                    <pre id="regime-sdk-snippet"><code>from thera_os import TheraOSClient
+
+client = TheraOSClient()
+
+regime = client.regime_analyze(
+    prices=[100.0, 101.0, 102.2, 103.1, 104.4, 105.8],
+    dates=["2026-01-01", "2026-01-02", "2026-01-03", "2026-01-04", "2026-01-05", "2026-01-06"],
+    window=5,
+    n_regimes="auto",
+    auto_method="bic",
+)
+
+latest = regime["rows"][-1]
+print(latest["label"], latest["probabilities"])
+print(regime["transition_matrix"])</code></pre>
+                  </div>
+                  <p class="demo-note">The SDK wraps regime labels, probabilities, uncertainty, model criteria, and transition matrices.</p>
+                </div>
                 <div class="demo-snippet">
                   <span class="snippet-title">API request</span>
                   <div class="code-block">
@@ -645,7 +674,7 @@ console.log(result.latest_regime, result.transition_matrix);</code></pre>
           <article class="demo-card">
             <div class="demo-head">
               <div>
-                <span class="card-label">Dashboard</span>
+                <span class="card-label">Python SDK + dashboard</span>
                 <h3>AIT Neural SDE</h3>
                 <p>
                   Missing-value reconstruction, Neural SDE-style drift and diffusion, Monte Carlo
@@ -660,6 +689,27 @@ console.log(result.latest_regime, result.transition_matrix);</code></pre>
             </div>
             <div class="demo-body">
               <div class="demo-snippets">
+                <div class="demo-snippet">
+                  <span class="snippet-title">Python SDK</span>
+                  <div class="code-block">
+                    <button class="copy-code" type="button" data-copy="sde-sdk-snippet">Copy</button>
+                    <pre id="sde-sdk-snippet"><code>from thera_os import TheraOSClient
+
+client = TheraOSClient()
+
+forecast = client.forecast_run(
+    series=[100.0, 101.0, None, 102.5, 103.2, 104.0],
+    steps=100,
+    simulations=1000,
+    targets=[112.0, 116.0, 120.0],
+)
+
+print(forecast["forecast_mean"][-1])
+print(forecast["terminal_summary"])
+print(forecast["target_probabilities"])</code></pre>
+                  </div>
+                  <p class="demo-note">The SDK returns reconstructed series, forecast bands, simulation paths, terminal distributions, and target probabilities.</p>
+                </div>
                 <div class="demo-snippet">
                   <span class="snippet-title">API request</span>
                   <div class="code-block">
@@ -706,6 +756,32 @@ console.log(result.forecast_mean, result.target_probabilities);</code></pre>
             <div class="demo-body">
               <div class="demo-snippets">
                 <div class="demo-snippet">
+                  <span class="snippet-title">Python SDK</span>
+                  <div class="code-block">
+                    <button class="copy-code" type="button" data-copy="symbolic-sdk-snippet">Copy</button>
+                    <pre id="symbolic-sdk-snippet"><code>from thera_os import TheraOSClient
+
+client = TheraOSClient()
+
+data = [
+    {"price": 10.0, "volume": 120.0, "volatility": 0.18, "margin": 0.31},
+    {"price": 11.2, "volume": 132.0, "volatility": 0.21, "margin": 0.34},
+    {"price": 9.8, "volume": 118.0, "volatility": 0.16, "margin": 0.29},
+]
+
+model = client.symbolic_fit(
+    data=data,
+    dependent="margin",
+    independents=["price", "volume", "volatility"],
+    max_terms=6,
+)
+
+print(model["formula_latex"])
+print(model["metrics"])</code></pre>
+                  </div>
+                  <p class="demo-note">The SDK exposes symbolic formulas, selected terms, residuals, fitted values, and model diagnostics.</p>
+                </div>
+                <div class="demo-snippet">
                   <span class="snippet-title">API request</span>
                   <div class="code-block">
                     <button class="copy-code" type="button" data-copy="symbolic-api-snippet">Copy</button>
@@ -735,11 +811,16 @@ console.log(model.formula, model.metrics);</code></pre>
 
         <div class="code-block">
           <button class="copy-code" type="button" data-copy="demo-commands">Copy</button>
-          <pre id="demo-commands"><code>git clone https://github.com/grandthera/AIT-Simple_RegimeDetection.git
-cd AIT-Simple_RegimeDetection
-python -m venv .venv
-pip install -e .
-python examples/neural_sde_forecast_demo.py</code></pre>
+          <pre id="demo-commands"><code>python -m venv .venv
+source .venv/bin/activate
+python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple thera-os==0.1.0
+
+python - <<'PY'
+from thera_os import TheraOSClient
+
+client = TheraOSClient()
+print(client.health())
+PY</code></pre>
         </div>
 
         <div class="section-actions">
@@ -770,6 +851,20 @@ python examples/neural_sde_forecast_demo.py</code></pre>
             <span>
               <b>Open Engineering API docs</b>
               <span>Public API documentation entry point for the demonstration APIs.</span>
+            </span>
+            <em>Open</em>
+          </a>
+          <a class="resource" href="https://test.pypi.org/project/thera-os/0.1.0/" target="_blank" rel="noreferrer">
+            <span>
+              <b>thera-os Python SDK</b>
+              <span>TestPyPI package for calling forecast, regime, symbolic, and upload endpoints from Python.</span>
+            </span>
+            <em>Open</em>
+          </a>
+          <a class="resource" href="https://github.com/GrandThera/thera-os-python" target="_blank" rel="noreferrer">
+            <span>
+              <b>thera-os Python client repository</b>
+              <span>Source code and README for the public Grand Thera AIT API client.</span>
             </span>
             <em>Open</em>
           </a>
